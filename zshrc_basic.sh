@@ -67,6 +67,9 @@ setopt list_packed
 setopt nolistbeep
 setopt noautoremoveslash
 
+#ファイル名生成の拡張
+setopt extended_glob
+
 #リダイレクトによる上書き防止
 #正直めんどいのでコメントアウト。痛い目見ないと分からないんじゃない?
 #setopt noclobber
