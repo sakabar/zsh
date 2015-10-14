@@ -294,3 +294,19 @@ fi
 if [ -f ~/local/src/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
     source ~/local/src/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 fi
+
+#http://utisam.dip.jp/note/linux/zsh.html
+function cdup(){
+  cd ..
+  zle reset-prompt
+}
+
+function cdback(){
+  popd
+  zle reset-prompt
+}
+
+zle -N cdup
+bindkey '^O' cdup
+zle -N cdback
+bindkey '^~' cdback
