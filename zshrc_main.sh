@@ -310,3 +310,7 @@ zle -N cdup
 bindkey '^O' cdup
 zle -N cdback
 bindkey '^~' cdback
+
+bindkey -s "^['" "^[b'^[f'" # Esc + '
+
+
