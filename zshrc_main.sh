@@ -221,3 +221,76 @@ if [ -d "${PYENV_ROOT}" ]; then
     export PATH=${PYENV_ROOT}/bin:$PATH
     eval "$(pyenv init -)"
 fi
+
+#peco
+autoload -Uz add-zsh-hook
+autoload -Uz is-at-least
+if is-at-least 4.3.11; then
+  autoload -U chpwd_recent_dirs cdr
+  add-zsh-hook chpwd chpwd_recent_dirs
+  zstyle ':completion:*:*:cdr:*:*' menu selection
+  zstyle ":completion:*" recent-dirs-insert always
+  zstyle ":chpwd:*" recent-dirs-max 500
+  zstyle ":chpwd:*" recent-dirs-default true
+  zstyle ":chpwd:*" recent-dirs-pushd true
+fi
+
+function peco-select-history() {
+    local tac
+    if which tac > /dev/null; then
+        tac="tac"
+    else
+        tac="tail -r"
+    fi
+    BUFFER=$(\history -n 1 | \
+        eval $tac | \
+        peco --query "$LBUFFER")
+    CURSOR=$#BUFFER
+    zle clear-screen
+}
+zle -N peco-select-history
+
+function peco-cdr () {
+    local selected_dir=$(cdr -l | awk '{ print $2 }' | peco)
+    if [ -n "$selected_dir" ]; then
+        BUFFER="cd ${selected_dir}"
+        zle accept-line
+    fi
+    zle clear-screen
+}
+zle -N peco-cdr
+
+
+# Use some functions with peco.
+if [[ -f `command -v peco` ]] ; then
+  # load peco sources
+  # for f (~/.zsh/peco-sources/*) source "${f}"
+  # alias peco='peco --rcfile=~/.peco/config.json'
+  alias peco='peco --rcfile=/Users/sak/.peco/config.json'
+
+  # Smart history search.
+  bindkey '^[^R' peco-select-history
+
+  # Smart change directory using cdr.
+  bindkey '^T' peco-cdr
+fi
+
+#graphviz
+export LD_LIBRARY_PATH=$HOME/local/lib/graphviz:$LD_LIBRARY_PATH
+
+#解凍コマンド覚えられません。
+function untarbz2(){
+  bzip2 -dc $1 | tar xvf -
+}
+
+#Haskell
+export PATH=$HOME/Library/Haskell/bin:$PATH
+
+if [ ! -e /tmp/tmpDesktop/ ]; then
+  mkdir /tmp/tmpDesktop
+fi
+
+#zsh syntax highlight
+if [ -f ~/local/src/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
+    source ~/local/src/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+fi

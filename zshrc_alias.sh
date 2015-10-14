@@ -34,6 +34,9 @@ alias scp_upload='scp'
 alias scrr="screen -r"
 alias scls="screen -ls"
 
+#Python
+alias python='python -t' #ソースファイルが、タブ幅に依存して意味が変わるような方法でタブ文字とスペースを混ぜて含んでいる場合に警告を発生させます。このオプションを2重にする (-tt) とエラーになります。
+
 # git
 alias gst="git status"
 alias gba="git branch"
@@ -72,3 +75,5 @@ alias め映='which'
 alias め映』='which'
 alias ふ「='tut'
 alias 諸区='exit'
+
+alias open_pdf='open `ls *.pdf | head -n1`'
