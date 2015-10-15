@@ -75,5 +75,6 @@ alias め映='which'
 alias め映』='which'
 alias ふ「='tut'
 alias 諸区='exit'
+alias 種葉='juman'
 
 alias open_pdf='open `ls *.pdf | head -n1`'
