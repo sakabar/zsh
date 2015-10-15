@@ -288,6 +288,12 @@ export PATH=$HOME/Library/Haskell/bin:$PATH
 
 if [ ! -e /tmp/tmpDesktop/ ]; then
   mkdir /tmp/tmpDesktop
+  # ln -s /tmp/tmpDesktop/ /Users/sak/Desktop/tmpDesktop
+fi
+
+if [ ! -e /tmp/tmpDownloads/ ]; then
+  mkdir /tmp/tmpDownloads
+  # ln -s /tmp/tmpDownloads/ /Users/sak/tmpDownloads
 fi
 
 #zsh syntax highlight
