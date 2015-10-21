@@ -315,10 +315,8 @@ function cdback(){
 }
 
 zle -N cdup
-bindkey '^P' cdup
+bindkey '^j' cdup
 # zle -N cdback
 # bindkey '^~' cdback
 
 bindkey -s "^['" "^[b'^[f'" # Esc + '
-
-
