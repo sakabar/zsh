@@ -39,7 +39,7 @@ alias python='python -t' #ソースファイルが、タブ幅に依存して意
 
 # git
 alias gst="git status"
-alias gba="git branch"
+alias gba="git branch -vv"
 #alias gba="echo -n"
 alias gout="git checkout"
 alias gt="git stash"
