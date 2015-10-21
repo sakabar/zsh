@@ -305,6 +305,8 @@ fi
 function cdup(){
   cd ..
   zle reset-prompt
+  ls
+  sleep 1
 }
 
 function cdback(){
@@ -313,9 +315,9 @@ function cdback(){
 }
 
 zle -N cdup
-bindkey '^O' cdup
-zle -N cdback
-bindkey '^~' cdback
+bindkey '^P' cdup
+# zle -N cdback
+# bindkey '^~' cdback
 
 bindkey -s "^['" "^[b'^[f'" # Esc + '
 
