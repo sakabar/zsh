@@ -56,6 +56,11 @@ alias -g N='| nkf -Lu'
 alias -g NL='| nkf -Lu | lv'
 alias -g ....='../..'
 alias -g ......='../../..'
+alias -g K='| knp -tab -print-num'
+alias -g J='| juman'
+alias -g JK='| juman | knp -tab -print-num'
+alias -g S='| sort'
+alias -g U='| uniq'
 
 #漢直エイリアス
 alias 後="ls"
