@@ -320,3 +320,8 @@ bindkey '^j' cdup
 # bindkey '^~' cdback
 
 bindkey -s "^['" "^[b'^[f'" # Esc + '
+
+#GITコマンドを補完
+source /Users/sak/local/src/git-2.0.4/contrib/completion/git-prompt.sh
+# source /Users/sak/local/src/git-2.0.4/contrib/completion/git-completion.zsh #おこられる
+
