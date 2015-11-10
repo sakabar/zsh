@@ -65,6 +65,8 @@ alias -g J='| juman'
 alias -g JK='| juman | knp -tab -print-num'
 alias -g S='| sort'
 alias -g U='| uniq'
+alias -g knp_token='knp -tab -print-num | grep -v "^\+" | grep -v "^\*" | grep -v "^EOS" | grep -v "^#"' #KNPで解析した後、トークン行だけ出力する
+
 
 #漢直エイリアス
 alias 後="ls"
