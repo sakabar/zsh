@@ -105,3 +105,8 @@ setopt noautoremoveslash
 
 #コマンド実行に3秒以上かかったときtimeコマンドと同じようにしてくれる
 #REPORTTIME=3
+
+#色のコードを英語で指定できるようになる。
+autoload -Uz colors
+colors
+# echo "${fg[red]}赤色文字"
