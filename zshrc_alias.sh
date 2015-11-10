@@ -1,6 +1,10 @@
 #!/bin/zsh
 
-alias emacs="emacsclient -nw"
+#Macのみの挙動
+if [ $USER = 'sak' ]; then
+  alias emacs="emacsclient -nw"
+fi
+
 alias la="ls -a"
 alias l="ls"
 alias s="ls"
@@ -83,3 +87,6 @@ alias 諸区='exit'
 alias 種葉='juman'
 
 alias open_pdf='open `ls *.pdf | head -n1`'
+
+#原形に戻して分かち書き
+alias mecab_wakati_normal_form='mecab -F"%f[6] " -U"%m " -E"\n"'

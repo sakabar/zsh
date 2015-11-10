@@ -1,12 +1,6 @@
 . ~/zsh/zshrc_basic.sh
 . ~/zsh/zshrc_alias.sh
 
-#octave
-# export GNUTERM=x11
-
-#原形に戻して分かち書き
-alias mecab_wakati_normal_form='mecab -F"%f[6] " -U"%m " -E"\n"'
-
 #scala
 alias scala="scala -classpath . "
 JAVA_TOOL_OPTIONS='-Dfile.encoding=UTF8'
@@ -27,22 +21,10 @@ export PATH=$SCALA_HOME/bin:$PATH
 export COQBIN=$HOME/local/bin
 export PATH=$COQBIN:$PATH
 
-#CFML
-# export CFML=$HOME/local/src/cfml
-# export PATH=$CFML:$PATH
-
-#Fink
-# source /sw/bin/init.sh
-
-#alias coqide="open -a /Applications/CoqIdE_8.4pl2.app/"
-
-#OPAM
-# eval `opam config env`
-
 #Python
-export PYTHONPATH=/Users/sak/local/src/liblinear-1.94/python:$PYTHONPATH
-export PYTHONPATH=/Users/sak/local/src/libsvm/python:$PYTHONPATH
-export PYTHONPATH=/Users/sak/local/lib/python/:$PYTHONPATH
+export PYTHONPATH=$HOME/local/src/liblinear-1.94/python:$PYTHONPATH
+export PYTHONPATH=$HOME/local/src/libsvm/python:$PYTHONPATH
+export PYTHONPATH=$HOME/local/lib/python/:$PYTHONPATH
 
 #TUT-Code
 #例: $ searchTUTchar "あ" => ((("r" "k"))("あ" "ア"))
@@ -151,14 +133,18 @@ alias tut='searchTUT'
 alias tutServer='tutLoop'
 
 #ocamlfind
-export PATH=/Users/sak/local/src/findlib-1.5.3/package-macosx/root/Users/sak/local/bin:$PATH
+export PATH=$HOME/local/src/findlib-1.5.3/package-macosx/root$HOME/local/bin:$PATH
 
 #JAVA
-export JAVA_HOME=`/System/Library/Frameworks/JavaVM.framework/Versions/A/Commands/java_home -v "1.7"`
-alias java1.6="/System/Library/Frameworks/JavaVM.framework/Versions/1.6/Commands/java"
-export PATH=$JAVA_HOME/bin:$PATH
+if [ -e "/System/Library/Frameworks/JavaVM.framework/Versions/A/Commands/java_home" ]; then
+  #これはMac用の設定か
+  export JAVA_HOME=`/System/Library/Frameworks/JavaVM.framework/Versions/A/Commands/java_home -v "1.7"`
+  alias java1.6="/System/Library/Frameworks/JavaVM.framework/Versions/1.6/Commands/java"
+  export PATH=$JAVA_HOME/bin:$PATH
+fi
 
-export LD_LIBRARY_PATH=/Users/sak/local/lib/:$LD_LIBRARY_PATH
+
+export LD_LIBRARY_PATH=$HOME/local/lib/:$LD_LIBRARY_PATH
 
 #cabochaのインストール
 export LD_LIBRARY_PATH=$HOME/local/include:$LD_LIBRARY_PATH
@@ -266,7 +252,7 @@ if [[ -f `command -v peco` ]] ; then
   # load peco sources
   # for f (~/.zsh/peco-sources/*) source "${f}"
   # alias peco='peco --rcfile=~/.peco/config.json'
-  alias peco='peco --rcfile=/Users/sak/.peco/config.json'
+  alias peco='peco --rcfile=$HOME/.peco/config.json'
 
   # Smart history search.
   bindkey '^[^R' peco-select-history
@@ -286,19 +272,24 @@ function untarbz2(){
 #Haskell
 export PATH=$HOME/Library/Haskell/bin:$PATH
 
-if [ ! -e /tmp/tmpDesktop/ ]; then
-  mkdir /tmp/tmpDesktop
-  # ln -s /tmp/tmpDesktop/ /Users/sak/Desktop/tmpDesktop
-fi
+#自分のマシンの場合のみ。
+if [ $USER = 'sak' ]; then
+  if [ ! -e /tmp/tmpDesktop/ ]; then
+    mkdir /tmp/tmpDesktop
+    # ln -s /tmp/tmpDesktop/ $HOME/Desktop/tmpDesktop
+  fi
 
-if [ ! -e /tmp/tmpDownloads/ ]; then
-  mkdir /tmp/tmpDownloads
-  # ln -s /tmp/tmpDownloads/ /Users/sak/tmpDownloads
+  if [ ! -e /tmp/tmpDownloads/ ]; then
+    mkdir /tmp/tmpDownloads
+    # ln -s /tmp/tmpDownloads/ $HOME/tmpDownloads
+  fi
 fi
 
 #zsh syntax highlight
-if [ -f ~/local/src/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
-    source ~/local/src/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+if [ -f $HOME/local/src/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
+  source ~/local/src/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+else
+  echo "no syntax hilight">&2
 fi
 
 #http://utisam.dip.jp/note/linux/zsh.html
@@ -321,7 +312,11 @@ bindkey '^j' cdup
 
 bindkey -s "^['" "^[b'^[f'" # Esc + '
 
-#GITコマンドを補完
-source /Users/sak/local/src/git-2.0.4/contrib/completion/git-prompt.sh
-# source /Users/sak/local/src/git-2.0.4/contrib/completion/git-completion.zsh #おこられる
 
+#GITコマンドを補完
+if [ -f $HOME/local/src/git-2.0.4/contrib/completion/git-prompt.sh ];then
+  source $HOME/local/src/git-2.0.4/contrib/completion/git-prompt.sh
+else
+  echo "No file" >&2
+fi
+# source $HOME/local/src/git-2.0.4/contrib/completion/git-completion.zsh #おこられる
