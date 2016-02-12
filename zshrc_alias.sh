@@ -92,3 +92,6 @@ alias open_pdf='open `ls *.pdf | head -n1`'
 
 #原形に戻して分かち書き
 alias mecab_wakati_normal_form='mecab -F"%f[6] " -U"%m " -E"\n"'
+
+#こう書いた場合、sedとgsedのどちらが優先される?
+alias sed=gsed
