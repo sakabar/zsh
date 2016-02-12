@@ -95,3 +95,7 @@ alias mecab_wakati_normal_form='mecab -F"%f[6] " -U"%m " -E"\n"'
 
 #こう書いた場合、sedとgsedのどちらが優先される?
 alias sed=gsed
+
+#gsコマンドが元から存在するけど、使う機会は無いでしょう。
+#スペルミス防止
+alias gs=gst
