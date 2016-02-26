@@ -21,14 +21,10 @@ export PATH=$SCALA_HOME/bin:$PATH
 export COQBIN=$HOME/local/bin
 export PATH=$COQBIN:$PATH
 
-#Python2
-# export PYTHONPATH=$HOME/local/src/liblinear-1.94/python:$PYTHONPATH
-# export PYTHONPATH=$HOME/local/src/libsvm/python:$PYTHONPATH
-# export PYTHONPATH=$HOME/local/lib/python/:$PYTHONPATH
-
 #Python3
-export PYTHONPATH=$HOME/local/lib/python3.5:$PYTHONPATH
-export PYTHONPATH=$HOME/local/lib/python3.5/site-packages:$PYTHONPATH
+export PYTHONPATH=$HOME/local/src/anaconda3:$PYTHONPATH
+export PATH=$HOME/local/src/anaconda3/bin:$PATH
+
 
 #TUT-Code
 #例: $ searchTUTchar "あ" => ((("r" "k"))("あ" "ア"))
