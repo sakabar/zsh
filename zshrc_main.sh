@@ -24,6 +24,7 @@ export PATH=$COQBIN:$PATH
 #Python3
 export PYTHONPATH=$HOME/local/src/anaconda3:$PYTHONPATH
 export PATH=$HOME/local/src/anaconda3/bin:$PATH
+export PYTHONPATH=$HOME/local/src/anaconda3/lib/python3.5:$PYTHONPATH
 
 
 #TUT-Code

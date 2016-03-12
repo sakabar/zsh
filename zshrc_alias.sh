@@ -95,7 +95,12 @@ alias mecab_wakati_normal_form='mecab -F"%f[6] " -U"%m " -E"\n"'
 
 #こう書いた場合、sedとgsedのどちらが優先される?
 alias sed=gsed
+alias head=ghead
+alias tail=gtail
+alias awk=gawk
 
 #gsコマンドが元から存在するけど、使う機会は無いでしょう。
 #スペルミス防止
 alias gs=gst
+
+alias pre-commit='/Library/Ruby/Gems/2.0.0/gems/pre-commit-0.27.0/bin/pre-commit'
