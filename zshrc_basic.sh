@@ -31,6 +31,14 @@ SAVEHIST=10000000
 WORDCHARS='*?_-.[]~&;!#$%^(){}<>'
 SHELL=/bin/zsh
 
+a=`echo $ZSH_VERSION`
+b=`zsh --version | awk '{print $2}'`
+if [ $a = $b ]; then
+else
+  echo "Version is different!"
+  #この2つの変数の値が異なっていると不具合が起こりうるらしいので、一応チェック。
+fi
+
 #setopt hist_ignore_dups
 setopt share_history
 setopt inc_append_history #複数の zsh を同時に使う時など history ファイルに上書きせず追加する
@@ -49,9 +57,9 @@ bindkey "^N" history-beginning-search-forward-end
 
 #history
 setopt hist_ignore_all_dups
-setopt hist_reduce_blanks
 setopt hist_save_no_dups
 setopt hist_no_store
+setopt nohist_reduce_blanks #ヒストリがバグって記録される原因かもしれないので、明示的にオフにしておく
 
 DIRSTACKSIZE=100
 setopt auto_pushd
@@ -68,7 +76,8 @@ setopt nolistbeep
 setopt noautoremoveslash
 
 #ファイル名生成の拡張
-setopt extended_glob
+#これをONにするとgitのHEAD^がglob扱いになって使えなくなるのでオフ
+# setopt extended_glob
 
 #リダイレクトによる上書き防止
 #正直めんどいのでコメントアウト。痛い目見ないと分からないんじゃない?
@@ -96,3 +105,8 @@ setopt extended_glob
 
 #コマンド実行に3秒以上かかったときtimeコマンドと同じようにしてくれる
 #REPORTTIME=3
+
+#色のコードを英語で指定できるようになる。
+autoload -Uz colors
+colors
+# echo "${fg[red]}赤色文字"

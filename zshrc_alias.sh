@@ -1,6 +1,10 @@
 #!/bin/zsh
 
-alias emacs="emacsclient -nw"
+#Macのみの挙動
+if [ $USER = 'sak' ]; then
+  alias emacs="emacsclient -nw"
+fi
+
 alias la="ls -a"
 alias l="ls"
 alias s="ls"
@@ -39,7 +43,8 @@ alias python='python -t' #ソースファイルが、タブ幅に依存して意
 
 # git
 alias gst="git status"
-alias gba="git branch"
+alias gstuno="git status -uno"
+alias gba="git branch -vv"
 #alias gba="echo -n"
 alias gout="git checkout"
 alias gt="git stash"
@@ -56,6 +61,13 @@ alias -g N='| nkf -Lu'
 alias -g NL='| nkf -Lu | lv'
 alias -g ....='../..'
 alias -g ......='../../..'
+alias -g K='| knp -tab -print-num'
+alias -g J='| juman'
+alias -g JK='| juman | knp -tab -print-num'
+alias -g S='| sort'
+alias -g U='| uniq'
+alias -g knp_token='knp -tab -print-num | grep -v "^\+" | grep -v "^\*" | grep -v "^EOS" | grep -v "^#"' #KNPで解析した後、トークン行だけ出力する
+
 
 #漢直エイリアス
 alias 後="ls"
@@ -75,5 +87,36 @@ alias め映='which'
 alias め映』='which'
 alias ふ「='tut'
 alias 諸区='exit'
+alias 種葉='juman'
 
 alias open_pdf='open `ls *.pdf | head -n1`'
+
+#原形に戻して分かち書き
+alias mecab_wakati_normal_form='mecab -F"%f[6] " -U"%m " -E"\n"'
+
+#こう書いた場合、sedとgsedのどちらが優先される?
+alias sed=gsed
+alias head=ghead
+alias tail=gtail
+alias awk=gawk
+
+#gsコマンドが元から存在するけど、使う機会は無いでしょう。
+#スペルミス防止
+alias gs=gst
+
+alias pre-commit='/Library/Ruby/Gems/2.0.0/gems/pre-commit-0.27.0/bin/pre-commit'
+
+alias matlab='/Applications/MATLAB_R2016a.app/bin/matlab'
+
+function convert_to_png(){
+    convert $1 $1:r".png"
+}
+
+function convert_newest_tiff(){
+    ls -t *.tiff | while read f; do
+        if [ ! -e $f:r".png" ]; then
+            convert $f $f:r".png"
+            break
+        fi
+    done
+}
