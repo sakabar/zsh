@@ -321,3 +321,7 @@ else
   echo "No file" >&2
 fi
 # source $HOME/local/src/git-2.0.4/contrib/completion/git-completion.zsh #おこられる
+
+
+export MILLRoot=$HOME/local/src/MILL:$PATH
+export PATH=$MILLRoot:$PATH

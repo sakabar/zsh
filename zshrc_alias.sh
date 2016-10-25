@@ -43,6 +43,7 @@ alias python='python -t' #ソースファイルが、タブ幅に依存して意
 
 # git
 alias gst="git status"
+alias gstuno="git status -uno"
 alias gba="git branch -vv"
 #alias gba="echo -n"
 alias gout="git checkout"
@@ -104,3 +105,18 @@ alias awk=gawk
 alias gs=gst
 
 alias pre-commit='/Library/Ruby/Gems/2.0.0/gems/pre-commit-0.27.0/bin/pre-commit'
+
+alias matlab='/Applications/MATLAB_R2016a.app/bin/matlab'
+
+function convert_to_png(){
+    convert $1 $1:r".png"
+}
+
+function convert_newest_tiff(){
+    ls -t *.tiff | while read f; do
+        if [ ! -e $f:r".png" ]; then
+            convert $f $f:r".png"
+            break
+        fi
+    done
+}
