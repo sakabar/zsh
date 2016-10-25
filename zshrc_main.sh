@@ -325,3 +325,10 @@ fi
 
 export MILLRoot=$HOME/local/src/MILL:$PATH
 export PATH=$MILLRoot:$PATH
+
+bd_path=$HOME/local/src/zsh-bd/bd.zsh
+if [[ -e $bd_path ]]; then
+    source $bd_path
+else
+    echo "Not Found: "$bd_path >&2
+fi
